@@ -1,8 +1,7 @@
 PHP_CHANNEL=pecl
-ORIG_PN="jsonc"
 inherit php
 
-NAME="php-json"
+NAME="php-jsonc"
 VERSION=1.3.5
 RELEASE=1
 CATEGORY="PHP"
@@ -12,6 +11,7 @@ This is a drop-in alternative to the standard json extension which uses the
 JSON-C library."
 
 # jsonc: we replace standard php-json, do not rename
+OBSOLETES="php-json"
 CYGCONF_ARGS="--enable-json=shared --without-jsonc --with-libjson"
 
 src_install() {
