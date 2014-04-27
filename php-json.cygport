@@ -1,0 +1,26 @@
+PHP_CHANNEL=pecl
+ORIG_PN="jsonc"
+inherit php
+
+NAME="php-json"
+VERSION=1.3.5
+RELEASE=1
+CATEGORY="PHP"
+SUMMARY="PHP JSON extension"
+DESCRIPTION="PHP support for JSON (JavaScript Object Notation) serialization.
+This is a drop-in alternative to the standard json extension which uses the
+JSON-C library."
+
+# jsonc: we replace standard php-json, do not rename
+CYGCONF_ARGS="--enable-json=shared --without-jsonc --with-libjson"
+
+src_install() {
+	cd ${B}
+	php_install
+	php_postinst
+
+	# block installation of old json extension (which this replaces)
+	pushd ${D}${PHP_PEAR_DIR}/.registry/.channel.${PHP_CHANNEL}
+	sed -e 's|5:"jsonc"|4:"json"|' jsonc.reg > json.reg
+	popd
+}
