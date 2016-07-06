@@ -2,7 +2,7 @@ PHP_CHANNEL=pecl
 inherit php
 
 NAME="php-jsonc"
-VERSION=1.3.9
+VERSION=1.3.10
 RELEASE=1
 CATEGORY="PHP"
 SUMMARY="PHP JSON extension"
